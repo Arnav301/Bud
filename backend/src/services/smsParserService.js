@@ -78,12 +78,45 @@ const parseBankSMS = (smsContent) => {
 
 /**
  * Alternative: Groq-based parsing for complex SMS 
- * (Will use Groq API to extract structured JSON data)
+ * (Uses Groq API to extract structured JSON data)
  */
+const Groq = require('groq-sdk');
+
 const parseBankSMSWithAI = async (smsContent) => {
-  // TODO: Add Groq completion logic here
-  // Fallback to regex for now
-  return parseBankSMS(smsContent);
+  try {
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+    
+    // We enforce a strict JSON output schema so it seamlessly integrates with our app
+    const prompt = `
+      You are a financial API. You extract structured data from bank SMS messages.
+      Analyze the following SMS and output ONLY a valid JSON object with the following schema:
+      {
+        "isTransaction": boolean (true if it's a debit or credit, false if promotional/auth code),
+        "amount": number (the extracted amount, null if not found),
+        "currency": string (3-letter currency code like USD, INR, GBP, null if not found),
+        "merchant": string (the name of the vendor or sender, null if not found),
+        "type": string ("Debit" or "Credit", null if not found),
+        "accountInfo": string (e.g., "***1234", null if not found),
+        "date": string (ISO 8601 format, use current time if none found)
+      }
+      
+      SMS Content: "${smsContent}"
+    `;
+
+    const completion = await groq.chat.completions.create({
+      messages: [{ role: 'user', content: prompt }],
+      model: 'llama3-8b-8192',
+      response_format: { type: 'json_object' } // Guarantees JSON parsing
+    });
+
+    const parsedResponse = JSON.parse(completion.choices[0]?.message?.content);
+    return parsedResponse;
+    
+  } catch (error) {
+    console.error('Groq AI Parsing Error, falling back to Regex:', error.message);
+    // Fallback to local regex method if API fails or rate limits
+    return parseBankSMS(smsContent);
+  }
 };
 
 module.exports = { parseBankSMS, parseBankSMSWithAI };
