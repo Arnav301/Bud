@@ -28,7 +28,7 @@ An intelligent personal finance platform that enables users to track, analyze, a
 * **Metrics:** Savings ratio, burn rate calculation, and a proprietary Financial Health Score (0–100).
 
 ### 🤖 AI-Powered Financial Insights
-* **Hybrid system:** Rule-based + AI via OpenAI API.
+* **Hybrid system:** Rule-based + AI via Groq API.
 * **Features:**
   * Subscription detection (e.g., Netflix, Spotify).
   * Spending anomaly alerts & budget overrun warnings.
@@ -48,7 +48,7 @@ An intelligent personal finance platform that enables users to track, analyze, a
 * **Conversational AI:** Ask questions like:
   * *"Where did I spend the most this month?"*
   * *"How can I save more?"*
-* Conversational insights powered by OpenAI.
+* Conversational insights powered by Groq.
 
 ---
 
@@ -66,7 +66,7 @@ An intelligent personal finance platform that enables users to track, analyze, a
   * `csv-parser` (for CSV processing)
   * `pdf-parse` (for PDF processing)
   * Native SMS Integration (Device SMS Read Permissions) & Backend regex/NLP-based extraction
-* **AI Engine:** OpenAI API
+*   **AI Engine:** Groq API
 * **Auth:** JSON Web Tokens (JWT) / OAuth / Firebase Authentication
 
 ### 🗄️ Database
@@ -115,7 +115,7 @@ An intelligent personal finance platform that enables users to track, analyze, a
                                      ↓
                         [ Secure Database (Encrypted) ]
                                      ↓
-                       [ Analytics + AI Engine (OpenAI) ]
+                       [ Analytics + AI Engine (Groq) ]
                                      ↓
                             [ Dashboard + Insights ]
 ```

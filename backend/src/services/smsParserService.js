@@ -77,11 +77,11 @@ const parseBankSMS = (smsContent) => {
 };
 
 /**
- * Alternative: OpenAI-based parsing for complex SMS 
- * (Will use OpenAI API to extract structured JSON data)
+ * Alternative: Groq-based parsing for complex SMS 
+ * (Will use Groq API to extract structured JSON data)
  */
 const parseBankSMSWithAI = async (smsContent) => {
-  // TODO: Add OpenAI completion logic here
+  // TODO: Add Groq completion logic here
   // Fallback to regex for now
   return parseBankSMS(smsContent);
 };
