@@ -54,10 +54,10 @@ An intelligent personal finance platform that enables users to track, analyze, a
 
 ## 🛠️ Tech Stack
 
-### 🎨 Frontend
-* **Framework:** React (bootstrapped with Vite)
-* **Styling:** Tailwind CSS
-* **Charts:** Chart.js / Recharts
+### 📱 Mobile Frontend
+* **Framework:** React Native (managed by Expo) or Flutter
+* **Styling:** NativeWind (Tailwind for React Native) or Native UI Components
+* **Charts:** React Native Chart Kit / Victory Native
 * **State Management:** Redux Toolkit / React Context API
 
 ### ⚙️ Backend
@@ -65,13 +65,16 @@ An intelligent personal finance platform that enables users to track, analyze, a
 * **Parsing Engine:**
   * `csv-parser` (for CSV processing)
   * `pdf-parse` (for PDF processing)
-  * Custom SMS parser (regex & NLP-based extraction)
+  * Native SMS Integration (Device SMS Read Permissions) & Backend regex/NLP-based extraction
 * **AI Engine:** OpenAI API
-* **Auth:** JSON Web Tokens (JWT) / OAuth
+* **Auth:** JSON Web Tokens (JWT) / OAuth / Firebase Authentication
 
 ### 🗄️ Database
-* **Relational/NoSQL Database:** PostgreSQL or MongoDB
+* **Relational/NoSQL Database:** PostgreSQL, MongoDB, or Firebase Firestore
 * **ORM/ODM:** Prisma (for SQL) / Mongoose (for NoSQL)
+
+### ☁️ Cloud & BaaS
+* **Firebase:** For Authentication, Realtime Database/Firestore, and cloud services (Hosting, Functions).
 
 ### ⚡ Performance & Scalability
 * **Job Queues:** Asynchronous job execution (e.g., BullMQ) for parsing tasks.
